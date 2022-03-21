@@ -32,5 +32,6 @@ def count_words(words):
     
 # input_file.close()
 
-# for word in word_counts:
-#     print(word, word_counts[word])
+def print_word_counts(word_counts):
+    for word in word_counts:
+        print(word, word_counts[word])
