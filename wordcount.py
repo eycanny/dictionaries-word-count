@@ -1,20 +1,22 @@
 """Count words in file."""
+import sys
 
+input_file = open(sys.argv[1])
 
-# put your code here.
-def word_count(file_name):
+# def word_count(input_file):
 
-    word_counts = {}
+word_counts = {}
     
-    file = open(file_name)
+    # file = open(input_file)
     
-    for line in file:
-        line = line.rstrip()
-        word_list = line.split(" ")
+for line in input_file:
+    line = line.rstrip()
+    word_list = line.split(" ")
 
-        for word in word_list:
-            word_counts[word] = word_counts.get(word,0) + 1
+    for word in word_list:
+        word_counts[word] = word_counts.get(word,0) + 1
     
-    file.close()
+input_file.close()
 
-    return word_counts
+for word in word_counts:
+    print(word, word_counts[word])
