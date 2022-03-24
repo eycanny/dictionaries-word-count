@@ -1,21 +1,20 @@
 """Count words in file."""
 import sys
 
-input_file = open(sys.argv[1])
 
+def tokenize(file_name):
 
-def tokenize(file_name=input_file):
+    words = []
 
-    words = []  
-    for line in file_name:
-        line = line.rstrip()
-        word_list = line.split(" ")
+    with open(file_name) as input_file:
+        for line in input_file:
+            line = line.rstrip()
+            word_list = line.split(" ")
 
-        for word in word_list:
-            if word not in words:
-                words.append(word)
+            words.extend(word_list)
 
     return words
+
 
 def count_words(words):
     """Take in a list of strings and return a dictionary of each string and the number 
@@ -30,8 +29,29 @@ def count_words(words):
 
     return count_words
     
-# input_file.close()
 
 def print_word_counts(word_counts):
     for word in word_counts:
         print(word, word_counts[word])
+
+
+def normalize_words(words):
+    normalized_words = []
+
+    for word in words:
+        normalized_word = ""
+
+        for char in word:
+            if char.isalpha():
+                normalized_word += char
+        
+        normalized_words.append(normalized_word.lower())
+
+    return normalized_words
+
+
+file = sys.argv[1]
+tokens = tokenize(file)
+normalized_words = normalize_words(tokens)
+word_counts = count_words(normalized_words)
+print_word_counts(word_counts)
